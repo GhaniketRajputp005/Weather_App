@@ -1,4 +1,4 @@
 # Weather-App
-* Created using HTML, CSS &amp; JavaScript, this app provides the latest weather updates for your current location and allows you to search for weather information in any city.
+*Developed a weather app using HTML, CSS, and JavaScript, providing real-time weather updates for the current location and search functionality for any city. Integrated an API for dynamic data fetching and accurate weather forecasts.
 
 * Demo link : https://ghaniketrajputp005.github.io/Weather_App/
