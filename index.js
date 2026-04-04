@@ -10,6 +10,7 @@ const userInfoContainer = document.querySelector(".user-info-container");
 //initially vairables need????
 //Basically jb site open hogi to ye dikhegi.
 let oldTab = userTab;
+
 //jo bhi site open hogi usme css properties add kr denge.
 oldTab.classList.add("current-tab");
 
@@ -20,7 +21,7 @@ getfromSessionStorage();
 
 function switchTab(newTab) {
     //ab agr jis tab pr the usi pr click kra to kuch nhi agr different ho to ye kro.
-    if(newTab != oldTab) {
+    if (newTab != oldTab) {
         //phle to old tab se css property hta do.
         oldTab.classList.remove("current-tab");
         //ab old tab ,new tab k braber hi gya.
@@ -30,7 +31,7 @@ function switchTab(newTab) {
 
 
         //kya search form wala container is invisible, if yes then make it visible
-        if(!searchForm.classList.contains("active")) {
+        if (!searchForm.classList.contains("active")) {
             //and jo phle se visible unhe remove krdo.
             userInfoContainer.classList.remove("active");
             grantAccessContainer.classList.remove("active");
@@ -62,7 +63,7 @@ searchTab.addEventListener("click", () => {
 function getfromSessionStorage() {
     //first-->check local corrdinate present h ?
     const localCoordinates = sessionStorage.getItem("user-coordinates");
-    if(!localCoordinates) {
+    if (!localCoordinates) {
         //agar local coordinates nahi mile
         //grant access bali UI dikha do.
         grantAccessContainer.classList.add("active");
@@ -77,7 +78,7 @@ function getfromSessionStorage() {
 
 //ab corrdinate (latitude and logitude) hai to inf o show krao API call krke.
 async function fetchUserWeatherInfo(coordinates) {
-    const {lat, lon} = coordinates;
+    const { lat, lon } = coordinates;
     // make grantcontainer invisible
     grantAccessContainer.classList.remove("active");
     //make loader visible
@@ -87,15 +88,15 @@ async function fetchUserWeatherInfo(coordinates) {
     try {
         const response = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
-          );
-        const  data = await response.json();
+        );
+        const data = await response.json();
 
         loadingScreen.classList.remove("active");
         userInfoContainer.classList.add("active");
         //ab data aa gya ab UI pr dalo un value ko.
         renderWeatherInfo(data);
     }
-    catch(err) {
+    catch (err) {
         loadingScreen.classList.remove("active");
     }
 
@@ -128,7 +129,7 @@ function renderWeatherInfo(weatherInfo) {
 //Get location --> geolocation API se krenge.
 function getLocation() {
     //if support avaliable
-    if(navigator.geolocation) {
+    if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     }
     else {
@@ -164,9 +165,9 @@ searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
     let cityName = searchInput.value;
 
-    if(cityName === "")
+    if (cityName === "")
         return;
-    else 
+    else
         fetchSearchWeatherInfo(cityName);
 })
 
